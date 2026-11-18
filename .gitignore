@@ -1,0 +1,9 @@
+node_modules/
+.env
+monitors.json
+data/
+reports/
+*.db
+*.db-wal
+*.db-shm
+.DS_Store

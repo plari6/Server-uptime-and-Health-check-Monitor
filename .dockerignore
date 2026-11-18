@@ -1,0 +1,8 @@
+node_modules
+.git
+.env
+data
+reports
+test
+*.db*
+monitors.json

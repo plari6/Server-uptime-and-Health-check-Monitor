@@ -1,0 +1,61 @@
+{
+  "defaults": {
+    "interval": 60,
+    "timeoutMs": 10000,
+    "retries": 1,
+    "failThreshold": 1,
+    "maxLatencyMs": 3000,
+    "sslWarnDays": 14,
+    "remindEveryMin": 30,
+    "escalateAfterMin": 15
+  },
+  "monitors": [
+    {
+      "name": "Company website",
+      "url": "https://example.com/",
+      "keyword": "Example Domain",
+      "sla": 99.9,
+      "tags": ["public"]
+    },
+    {
+      "name": "Customer API",
+      "url": "https://httpbin.org/json",
+      "json": { "path": "slideshow.title", "exists": true },
+      "maxLatencyMs": 2000,
+      "sla": 99.9,
+      "owner": "@backend_oncall",
+      "tags": ["api"]
+    },
+    {
+      "name": "Login page",
+      "url": "https://example.org/",
+      "expectStatus": "200-299",
+      "notKeyword": "Fatal error",
+      "sla": 99.5
+    },
+    {
+      "name": "Internal admin (token protected)",
+      "url": "https://httpbin.org/bearer",
+      "headers": { "Authorization": "Bearer ${ADMIN_API_TOKEN}" },
+      "expectStatus": [200, 401],
+      "public": false,
+      "tags": ["internal"]
+    },
+    {
+      "name": "Mail server SMTP",
+      "type": "tcp",
+      "host": "smtp.gmail.com",
+      "port": 587,
+      "interval": 120,
+      "public": false,
+      "tags": ["internal"]
+    }
+  ],
+  "maintenance": [
+    {
+      "tags": ["internal"],
+      "weekly": { "days": ["sun"], "from": "02:00", "to": "03:00" },
+      "reason": "Weekly patch window"
+    }
+  ]
+}

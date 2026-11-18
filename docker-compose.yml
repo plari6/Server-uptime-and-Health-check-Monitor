@@ -1,0 +1,18 @@
+services:
+  uptime-monitor:
+    build: .
+    container_name: uptime-monitor
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      MONITORS_FILE: /app/config/monitors.json
+      DB_FILE: /app/data/uptime.db
+    volumes:
+      - ./monitors.json:/app/config/monitors.json:ro
+      - uptime-data:/app/data
+    ports:
+      - "8080:8080"
+    stop_grace_period: 20s
+
+volumes:
+  uptime-data:

@@ -1,0 +1,35 @@
+{
+  "name": "server-uptime-health-monitor",
+  "version": "1.0.0",
+  "description": "Server uptime & health check monitor: pings company endpoints every 60 seconds (HTTP, keyword, JSON, TCP, SSL expiry) and alerts IT teams on Telegram with incidents, acknowledge, escalation, status page and SLA reports.",
+  "type": "module",
+  "bin": {
+    "uptime-monitor": "bin/uptime-monitor.js"
+  },
+  "main": "src/index.js",
+  "exports": "./src/index.js",
+  "scripts": {
+    "start": "node bin/uptime-monitor.js start --port 8080",
+    "check": "node bin/uptime-monitor.js check",
+    "demo": "node bin/uptime-monitor.js demo",
+    "test": "node --test --test-concurrency=1 \"test/**/*.test.js\""
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "keywords": [
+    "uptime",
+    "monitoring",
+    "health-check",
+    "telegram",
+    "node-cron",
+    "axios",
+    "sre",
+    "status-page"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.21.1",
+    "node-cron": "^4.6.0"
+  }
+}
